@@ -61,7 +61,7 @@ $ python train_ner_flair.py -c /path/to/corpus/ -t /path/to/model/folder/ -o opt
 ```
 
 ### [train sequence tagger (ner) with cross validation (TODO)](named_entity_recognition/train_ner_flair_crossval.py)
-see how to do it [here](../tutorials/TRAINING_A_NER_MODEL.md#variant-2-k-fold-cross-validation).
+see how to do it [here](../tutorials/TRAINING_A_NER_MODEL.md#variant-2---k-fold-cross-validation).
 ```bash
 $ python train_ner_flair_crossval.py -c /path/to/corpus/ -t /path/to/model/folder/ -o options_ner_flair -f 10 [--tensorboard] -e fwd-lm.pt bwd-lm.pt
 ```
