@@ -13,7 +13,7 @@ Say you have a raw text corpus and a NER dataset from the same domain. You want 
 * Train an NER model (with your previously trained LM, maybe even in combination with other LMs/embeddings)
 * Evaluate the performance of yout final model
 
-The following examples assume that you are familiar with flair base classes, data types, etc. You can get started with flair tutorials [here](https://github.com/flairNLP/flair/blob/master/resources/docs/TUTORIAL_1_BASICS.md)
+The following examples assume that you are familiar with flair base classes, data types, etc. You can get started with flair tutorials [here](https://github.com/flairNLP/flair/blob/master/resources/docs/TUTORIAL_1_BASICS.md). Most parts of this workflow (with output) are illustrated as [jupyter notebooks](notebooks/).
 
 ### Preproccess
 e.g. clean, replace umlaute, remove accents and puntuaction tokens
@@ -61,3 +61,37 @@ cca.visualize_ner_tags(display_index=range(5))
 cca.tag_distribution(savefig_file=None, tag_type='ner', figsize=(13, 10))
 cca.most_common_tokens_per_tags(max_tokens=10, tag_type='ner', print_without_count=True)
 ```
+
+### Train a Flair Language Model
+First, set parameters (epochs, learning rate, etc.) in a special file (e.g. options_lm.json). Then:
+```bash
+$ cd scripts/language_modeling
+$ python train_lm_flair.py -c /path/to/corpus/ -t /path/to/model/folder/ -o options_lm.json [--continue_training]
+```
+
+### Train a NER Model
+Again, set parameters in a options-file. Say, you have trained a forward and a backwards LM stored in fwd-lm.pt and bwd-lm.pt, then:
+```bash
+$ cd scripts/named_entity_recognition
+$ python train_ner_flair.py -c /path/to/corpus/ -t /path/to/model/folder/ -o options_ner_flair [--continue_training] [--tensorboard] -e fwd-lm.pt bwd-lm.pt
+```
+It will use a stacked combination of all embeddings you specify after te flag -e.
+
+### Evaluate trained Model
+Predictions; Precision, Recall, F1 scores (total/ for each tag) as table and as plot; training curves, weights, etc.
+```python
+from modules.model_evaluation import SequenceTaggerEvaluation
+
+ste = SequenceTaggerEvaluation(path/to/model/folder/, model='best-model.pt')
+
+text = "Lorem Ipsum ..."
+sentences = SequenceTaggerEvaluation._preprocess(text)
+ste.predict(sentences)
+
+ste.result_tables()
+ste.plot_tag_stats(mode='tp_fn',...)
+ste.plot_training_curves()
+ste.plot_weights()
+ste.plot_learning_rate()
+
+
