@@ -95,3 +95,5 @@ ste.plot_weights()
 ste.plot_learning_rate()
 ```
 
+---
+The code in this repository was used for the thesis: [*"Effects of different Word Embeddings on the Performance of Intent Detection and Named Entity Recognition for German texts"* (Parikh, 2019)](https://drive.google.com/file/d/1SEnWTUDwsD7_1ZN7e_ynmBys2pmfPNtK/view?usp=sharing).
