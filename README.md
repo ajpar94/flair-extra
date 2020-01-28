@@ -23,20 +23,20 @@ $ python preprocess_corpus.py -cuap /path/to/corpus/ /path/to/corpus_proc/
 ```
 
 ### Format
-e.g. create a corpus folder from a plain text file using 97% as training-, 1% as validation and 2% as test set. Split training set into 20 parts
+E.g. create a corpus folder from a plain text file using 97% as training-, 1% as validation and 2% as test set. Split training set into 20 parts
 ```bash
 $ cd scripts/language_modeling
 $ python make_corpus_folder.py /path/to/corpus/ /path/to/corpus/folder/ -p 97-1-2 -s 20
 ```
 
-e.g. create a column corpus folder (NER) from a column file using 70% as training-, 20% as validation and 10% as test set. Shuffle lines
+E.g. create a column corpus folder (NER) from a column file using 70% as training-, 20% as validation and 10% as test set. Shuffle lines
 ```bash
 $ cd scripts/named_entity_recognition
 $ python make_nercorpus_folder.py /path/to/ner_dataset /path/to/destination/ -p 70-20-10 --shuffle
 ```
 
 ### Analyze
-analyze text corpus: lines, tokens, etc.; most common tokens; wordcloud
+Analyze text corpus: lines, tokens, etc.; most common tokens; wordcloud
 ```python
 from modules.corpus_analysis import TextAnalysis
 
@@ -47,7 +47,7 @@ print(ta.most_common_tokens(nr_tokens=15, stop_words=['the', 'is',...]))
 ta.wordcloud(stop_words=[], savefig_file=None, figsize = ((15,15)))
 ```
 
-analyze a ColumnCorpus (NER): tags/tokens stats; most common tokens; wordcloud; visualize sentences, tag distribution, most common tokens per tags
+Analyze a ColumnCorpus (NER): tags/tokens stats; most common tokens; wordcloud; visualize sentences, tag distribution, most common tokens per tags
 ```python
 from modules.corpus_analysis import ColumnCorpusAnalysis
 
