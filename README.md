@@ -13,6 +13,8 @@ Say you have a raw text corpus and a NER dataset from the same domain. You want 
 * Train an NER model (with your previously trained LM, maybe even in combination with other LMs/embeddings)
 * Evaluate the performance of yout final model
 
+The following examples assume that you are familiar with flair base classes, data types, etc. You can get started with flair tutorials [here](https://github.com/flairNLP/flair/blob/master/resources/docs/TUTORIAL_1_BASICS.md)
+
 ### Preproccess
 e.g. clean, replace umlaute, remove accents and puntuaction tokens
 ```bash
@@ -31,4 +33,31 @@ e.g. create a column corpus folder (NER) from a column file using 70% as trainin
 ```bash
 $ cd scripts/named_entity_recognition
 $ python make_nercorpus_folder.py /path/to/ner_dataset /path/to/destination/ -p 70-20-10 --shuffle
+```
+
+### Analyze
+analyze text corpus: lines, tokens, etc.; most common tokens; wordcloud
+```python
+from modules.corpus_analysis import TextAnalysis
+
+ta = TextAnalysis(path/to/corpus)
+
+print(ta.obtain_statistics())
+print(ta.most_common_tokens(nr_tokens=15, stop_words=['the', 'is',...]))
+ta.wordcloud(stop_words=[], savefig_file=None, figsize = ((15,15)))
+```
+
+analyze a ColumnCorpus (NER): tags/tokens stats; most common tokens; wordcloud; visualize sentences, tag distribution, most common tokens per tags
+```python
+from modules.corpus_analysis import ColumnCorpusAnalysis
+
+columns = {0: 'text', 1: 'ner', 2: 'pos'}
+cca = ColumnCorpusAnalysis(path=path/to/corpus_folder, columns=columns, tag_types=['ner', 'pos'])
+
+print(cca.obtain_statistics(tag_type='ner'))
+print(cca.most_common_tokens(nr_tokens=20, stop_words=stopwords.words('german')))
+cca.wordcloud(savefig_file=None, figsize = ((15,15))
+cca.visualize_ner_tags(display_index=range(5))
+cca.tag_distribution(savefig_file=None, tag_type='ner', figsize=(13, 10))
+cca.most_common_tokens_per_tags(max_tokens=10, tag_type='ner', print_without_count=True)
 ```
