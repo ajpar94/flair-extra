@@ -93,5 +93,5 @@ ste.plot_tag_stats(mode='tp_fn',...)
 ste.plot_training_curves()
 ste.plot_weights()
 ste.plot_learning_rate()
-
+```
 
