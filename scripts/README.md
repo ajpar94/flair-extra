@@ -1,20 +1,20 @@
 # Scripts - Usage
 
-## [Language Modeling](scripts/language_modeling/)
+## [Language Modeling](language_modeling/)
 
-### [preprocess a text corpus](scripts/language_modeling/preprocess_corpus.py)
+### [preprocess a text corpus](language_modeling/preprocess_corpus.py)
 example: clean, replace umlaute, remove accents and puntuaction tokens
 ```bash
 $ python preprocess_corpus.py -cuap /path/to/corpus/ /path/to/corpus_pp/
 ```
 
-### [make corpus folder](scripts/language_modeling/make_corpus_folder.py)
+### [make corpus folder](language_modeling/make_corpus_folder.py)
 example: create a corpus folder from a plain text file using 97% as training-, 1% as validation and 2% as test set. Split training set into 20 parts
 ```bash
 $ python make_corpus_folder.py /path/to/corpus/ /path/to/corpus/folder/ -p 97-1-2 -s 20
 ```
 
-### [make vocabulary file](scripts/language_modeling/make_vocabulary.py)
+### [make vocabulary file](language_modeling/make_vocabulary.py)
 create a vocabulary file from a plain text file with one token per line, sorted by frequency (descending). --top 10 prints out the 10 most frequent tokens with their frequency.
 ```bash
 $ python make_vocabulary.py /path/to/corpus/ /path/to/vocabulary-file [--top]
