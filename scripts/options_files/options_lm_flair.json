@@ -1,0 +1,33 @@
+{
+    "is_forward_lm": true,
+
+    "corpus": {
+        "forward": true,
+        "character_level": true,
+        "random_case_flip": false,
+        "shuffle_lines": true,
+    },
+
+    "language_model": {
+        "hidden_size": 1024,
+        "nlayers": 1,
+        "embedding_size": 100,
+        "nout": null,
+        "dropout": 0.1,
+    },
+
+    "training": {
+        "sequence_length": 250,
+        "learning_rate": 20.0,
+        "mini_batch_size": 32,
+        "anneal_factor": 0.25,
+        "patience": 10,
+        "clip": 0.25,
+        "max_epochs": 10,
+        "checkpoint": true,
+        "grow_to_sequence_length": 0,
+        "num_workers": 2,
+        "use_amp": false,
+        "amp_opt_level": "O1",
+    }
+}
