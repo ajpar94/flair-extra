@@ -15,7 +15,7 @@ Say you have a raw text corpus and a NER dataset from the same domain. You want 
 
 The following examples assume that you are familiar with flair base classes, data types, etc. You can get started with flair tutorials [here](https://github.com/flairNLP/flair/blob/master/resources/docs/TUTORIAL_1_BASICS.md). Most parts of this workflow (with output) are illustrated as [jupyter notebooks](notebooks/).
 
-### Preproccess
+### Preprocess
 e.g. clean, replace umlaute, remove accents and puntuaction tokens
 ```bash
 $ cd scripts/language_modeling
